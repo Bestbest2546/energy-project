@@ -1,84 +1,45 @@
-"use client"
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import Image from 'next/image';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+"use client";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Image from "next/image";
+
+import { useNavbar } from "./useNavbar";
+import Link from "next/link";
+import Dialogshow from "../../Login/dialog";
 
 export default function MenuAppBar() {
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const { auth, handleMenu } = useNavbar();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {/* <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup> */}
-      <AppBar position="static" sx={{ backgroundColor: "#212121",display:'flex'}}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: "#212121", display: "flex" }}
+      >
         <Toolbar>
-        <Image src="/logo.svg" alt="" height={50} width={50} className="mx-4"/>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Thetigerteamacademy
+          <Link href="/">
+            <Image
+              src="/logo.svg"
+              alt=""
+              height={50}
+              width={50}
+              className="mx-4"
+            />
+          </Link>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
+          >
+            Thetigerteamacademy
           </Typography>
           {auth && (
             <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
+              {/* <AccountCircle /> */}
+              <Dialogshow />
             </div>
           )}
         </Toolbar>
