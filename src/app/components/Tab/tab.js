@@ -5,7 +5,6 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,11 +53,28 @@ export default function BasicTabs() {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          sx={{
+            '.MuiTab-root': { 
+              position: 'relative',
+              '&:not(:last-child)': {
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  right: 0,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  height: '60%',
+                  width: '1px',
+                  bgcolor: 'divider',
+                },
+              },
+            },
+          }}
         >
-          <Tab label="Energy" {...a11yProps(0)} />
-          <Divider orientation="vertical" variant="middle" flexItem />
+          <Tab className="divide-x" label="Energy" {...a11yProps(0)} />
+          {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
           <Tab label="Item Two" {...a11yProps(1)} />
-          <Divider orientation="vertical" variant="middle" flexItem />
+          {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
