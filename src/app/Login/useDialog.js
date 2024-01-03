@@ -1,5 +1,6 @@
 import * as React from "react";
 
+
 export default function useDialog() {
   const [open, setOpen] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
@@ -7,7 +8,6 @@ export default function useDialog() {
 
   const handleClickOpen = () => {
     setOpen(true);
-    console.log("open");
   };
 
   const handleClose = () => {
