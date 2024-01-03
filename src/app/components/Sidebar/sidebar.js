@@ -1,14 +1,10 @@
 "use client";
-import Sidebarconst from "./sidebar.const";
+import { useSidebar } from "./useSidebar";
 
 const Sidebar = () => {
-  const {isSidebarOpen,toggleSidebar} = Sidebarconst();
-
+  const { isSidebarOpen, toggleSidebar } = useSidebar();
   return (
-    <div
-      className="flex flex-row items-center"
-      aria-label="Sidebar"
-    >
+    <div className="flex flex-row items-center" aria-label="Sidebar">
       <div
         className={`transition-all duration-500 ease-in-out ${
           isSidebarOpen ? "w-60" : "w-0"
