@@ -12,7 +12,7 @@ const Sidebar = () => {
       ></div>
       <button
         onClick={toggleSidebar}
-        className="w-4 h-10 border-1 hover:bg-blue-500 rounded-r-lg "
+        className="w-4 h-10 border-2 hover:bg-blue-500 rounded-r-lg "
       >
         {isSidebarOpen ? "<" : ">"}
       </button>

@@ -5,7 +5,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-
+import Cardenergy from "../Cardenergy/cardenergy";
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -41,6 +41,7 @@ function a11yProps(index) {
 
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
+  const { card,energyflow } = Cardenergy();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -54,32 +55,31 @@ export default function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
           sx={{
-            '.MuiTab-root': { 
-              position: 'relative',
-              '&:not(:last-child)': {
-                '&::after': {
+            ".MuiTab-root": {
+              position: "relative",
+              "&:not(:last-child)": {
+                "&::after": {
                   content: '""',
-                  position: 'absolute',
+                  position: "absolute",
                   right: 0,
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  height: '60%',
-                  width: '1px',
-                  bgcolor: 'divider',
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  height: "60%",
+                  width: "1px",
+                  bgcolor: "divider",
                 },
               },
             },
           }}
         >
           <Tab className="divide-x" label="Energy" {...a11yProps(0)} />
-          {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
           <Tab label="Item Two" {...a11yProps(1)} />
-          {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        Item One
+        {card}
+        {energyflow}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         Item Two
