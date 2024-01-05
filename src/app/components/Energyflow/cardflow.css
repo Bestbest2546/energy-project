@@ -1,0 +1,23 @@
+.circlesolar {
+    width: 5px;
+    height: 10px;
+    background-color: blue;
+    border-radius: 50%;
+    /* position: relative; */
+    animation: moveCircle 4s linear infinite;
+}
+
+@keyframes moveCircle {
+    0% {
+        top: 100px;
+        left: 100px;
+    }
+    50% {
+        top: 100px;
+        left: 100px;
+    }
+    100% {
+        top: 100px;
+        left: 100px;
+    }
+}
