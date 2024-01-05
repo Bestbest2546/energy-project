@@ -14,7 +14,7 @@ export default function MenuAppBar() {
   const { auth, handleMenu } = useNavbar();
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{width:'100%' }}>
       <AppBar
         position="static"
         sx={{ backgroundColor: "#212121", display: "flex" }}

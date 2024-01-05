@@ -4,10 +4,10 @@ import { useSidebar } from "./useSidebar";
 const Sidebar = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebar();
   return (
-    <div className="flex flex-row items-center lg:relative absolute h-full" aria-label="Sidebar">
+    <div className="flex flex-row items-center lg:relative absolute" aria-label="Sidebar">
       <div
-        className={`transition-all duration-500 ease-in-out border-2 h-full ${
-          isSidebarOpen ? "w-60 bg-white z-30" : "w-0"
+        className={`transition-all duration-500 ease-in-out border-2 ${
+          isSidebarOpen ? "w-60 h-screen bg-white z-30" : "w-0 h-screen bg-white z-30"
         }`}
       ></div>
       <button

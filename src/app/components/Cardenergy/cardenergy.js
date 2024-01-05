@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Cardflow from "../Energyflow/cardEnergyflow";
+import Wheather from "../../hook/wheather";
+import Map from "../Map/map";
+import Graph from "../Graph/graph";
 export default function cardenergy() {
   const iconsize = 50;
   const card = (
@@ -76,38 +79,81 @@ export default function cardenergy() {
   const energyflow = (
     <>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full border-solid border-2 border-grey-500 rounded my-4">
-        <div className="flex flex-row justify-center items-center w-full gap-2">
+        <div className="flex flex-row justify-center items-center w-[300px] gap-2">
           <Cardflow />
         </div>
 
-        <div className="flex flex-row justify-center items-center w-full gap-2">
-          <Image src="/png/totalyield.png" alt="" height={70} width={70} />
-          <div className="flex flex-col justify-center items-center w-fit">
-            <p>Topic</p>
-            <p>value</p>
+        <div className="flex flex-col justify-center items-center gap-8">
+          <div className="flex flex-row justify-center items-center w-full gap-2">
+            <Image
+              src="/png/sunny (1).png"
+              alt=""
+              height={iconsize}
+              width={iconsize}
+            />
+            <div className="flex flex-col justify-start items-start w-fit">
+              <p className="font-bold text-xl flex flex-row items-end ">
+                Value
+                <p className="mx-1 font-thin text-sm text-gray-400">Lux</p>
+              </p>
+              <p className="text-gray-400">Light intensity</p>
+            </div>
+          </div>
+
+          <div className="flex flex-row justify-center items-center w-full gap-2">
+            <Image
+              src="/png/weather.png"
+              alt=""
+              height={iconsize}
+              width={iconsize}
+            />
+            <div className="flex flex-col justify-start items-start w-fit">
+              <p className="font-bold text-xl flex flex-row items-end ">
+                Value
+                <p className="mx-1 font-thin text-sm text-gray-400"> ºC</p>
+              </p>
+              <p className="text-gray-400">Temperature</p>
+            </div>
+          </div>
+
+          <div className="flex flex-row justify-center items-center w-full gap-2">
+            <Image
+              src="/png/cloud.png"
+              alt=""
+              height={iconsize}
+              width={iconsize}
+            />
+            <div className="flex flex-col justify-start items-start w-fit">
+              <p className="font-bold text-xl flex flex-row items-end ">
+                Value
+                <p className="mx-1 font-thin text-sm text-gray-400">%RH</p>
+              </p>
+              <p className="text-gray-400">Humidity</p>
+            </div>
           </div>
         </div>
 
         <div className="flex flex-row justify-center items-center w-full gap-2">
-          <Image src="/png/consum.png" alt="" height={70} width={70} />
-          <div className="flex flex-col justify-center items-center w-fit">
-            <p>Topic</p>
-            <p>value</p>
-          </div>
+          <Wheather />
         </div>
 
         <div className="flex flex-row justify-center items-center w-full gap-2">
-          <Image src="/png/consumpv.png" alt="" height={70} width={70} />
-          <div className="flex flex-col justify-center items-center w-fit">
-            <p>Topic</p>
-            <p>value</p>
-          </div>
+          <Map />
         </div>
+      </div>
+    </>
+  );
+
+  const energygraph = (
+    <>
+      <div className="flex justify-center items-center w-full border-solid border-2 border-grey-500 rounded my-4">
+        <Graph />
       </div>
     </>
   );
   return {
     card,
     energyflow,
+    energygraph,
   };
 }

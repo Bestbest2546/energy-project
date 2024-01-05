@@ -1,11 +1,13 @@
 import Image from "next/image";
-// import './cardflow.css'
+import './cardflow.css'
 
 export default function cardFlow() {
-  // const circlesize = 60;
   return (
     <div className="w-[300px] h-[300px] flex flex-col p-2 bg-[url('/energyflow.svg')] bg-no-repeat bg-center">
-      {/* <div className="circlesolar"></div> */}
+      <div className="circlesolar"></div>
+      <div className="circlebatt"></div>
+      <div className="circlesolarhome"></div>
+      <div className="circlegrid"></div>
       <div className=" h-full flex justify-center items-start">
         <div
           className={`flex justify-center flex-col items-center w-[60px] h-[60px] border-[1px] rounded-full border-yellow-500 outline outline-offset-4 outline-1 outline-yellow-200 bg-white`}

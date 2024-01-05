@@ -41,14 +41,14 @@ function a11yProps(index) {
 
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
-  const { card,energyflow } = Cardenergy();
+  const { card,energyflow,energygraph } = Cardenergy();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{ width: "100%", height: "100vh" }}>
+    <Box sx={{ width: "100%", height: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -80,6 +80,7 @@ export default function BasicTabs() {
       <CustomTabPanel value={value} index={0}>
         {card}
         {energyflow}
+        {energygraph}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         Item Two

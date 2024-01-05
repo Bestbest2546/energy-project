@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="flex min-h-screen">
+      <div className="flex h-full">
         <aside>
           <Sidebar />
         </aside>
