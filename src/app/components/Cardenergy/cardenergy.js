@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Cardflow from "../Energyflow/cardEnergyflow";
-import Wheather from "../../hook/wheather";
+import Wheather from "../Weather/wheather";
 import Map from "../Map/map";
 import Graph from "../Graph/graph";
 export default function cardenergy() {
