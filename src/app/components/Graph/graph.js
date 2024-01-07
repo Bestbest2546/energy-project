@@ -2,23 +2,26 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Day from "./day";
+import Month from "./month";
+import Year from "./year";
+import EnergyConsumptionBar from "./bargraph";
+import EnergyConsumptionBar2 from "./bargraph2";
 
 function Recents() {
   return <Day />;
 }
 
 function Favorites() {
-  return <div>Favorites Content</div>;
+  return <Month />;
 }
 
 function Nearby() {
-  return <div>Nearby Content</div>;
+  return <Year />;
 }
 
 export default function IconLabelTabs() {
   const [value, setValue] = React.useState(0);
 
-  // ฟังก์ชันเพื่อเลือกคอมโพเนนต์ที่จะแสดง
   function renderTabContent(value) {
     switch (value) {
       case 0:
@@ -45,9 +48,23 @@ export default function IconLabelTabs() {
           <Button onClick={() => setValue(2)}>Year</Button>
         </ButtonGroup>
       </div>
-      <div className="w-full grid lg:grid-cols-2 grid-cols-1 my-3">
-        <div>1</div>
-        <div>2</div>
+      <div className="w-full grid lg:grid-cols-2 grid-cols-1 my-3 gap-4">
+        <div className="p-4 border-2 rounded-xl">
+          <EnergyConsumptionBar
+            pvPercent={30.63}
+            gridPercent={77.37}
+            pvValue={66.96}
+            gridValue={228.87}
+          />
+        </div>
+        <div className="p-4 border-2 rounded-xl">
+          <EnergyConsumptionBar2
+            pvPercent={70.63}
+            gridPercent={77.37}
+            pvValue={66.96}
+            gridValue={228.87}
+          />
+        </div>
       </div>
       {renderTabContent(value)}
     </div>

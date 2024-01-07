@@ -15,7 +15,7 @@ function Map() {
     if (typeof window !== "undefined") {
       // Ensure the global `google` object doesn't already exist
       if (!window.google) {
-        loadScript(`https://maps.googleapis.com/maps/api/js?key=AIzaSyC5x6GeZcFEDThuEx-EHI38yBoq3fSSn0o&callback=initMap`)
+        loadScript(process.env.NEXT_PUBLIC_GOOGLE_MAP)
           .then(() => {
             window.initMap = initMap;
           })

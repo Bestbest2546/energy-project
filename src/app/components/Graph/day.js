@@ -1,43 +1,46 @@
-import * as React from 'react';
-import { ChartContainer } from '@mui/x-charts/ChartContainer';
-import { ChartsReferenceLine } from '@mui/x-charts';
-import { LinePlot, MarkPlot } from '@mui/x-charts/LineChart';
-import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis';
-import { ChartsYAxis } from '@mui/x-charts/ChartsYAxis';
+import * as React from "react";
+import Stack from "@mui/material/Stack";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { LineChart } from "@mui/x-charts/LineChart";
 
-const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-const xLabels = [
-  'Page A',
-  'Page B',
-  'Page C',
-  'Page D',
-  'Page E',
-  'Page F',
-  'Page G',
-];
+export default function ConnectNulls() {
+  const [connectNulls, setConnectNulls] = React.useState(true);
 
-export default function LineChartWithReferenceLines() {
+  // Assuming this is your solar data
+  const solarData = [3, 6, 7, 4, 9, 5, 11, 3, 7, 11, 9];
+  const loadData = [3, 12, 7, 4, 10, 12, 11, 3, 7, 5, 9];
+
   return (
-    <ChartContainer
-      width={1000}
-      height={300}
-      series={[
-        { data: pData, label: 'pv', type: 'line' },
-        { data: uData, label: 'uv', type: 'line' },
-      ]}
-      xAxis={[{ scaleType: 'point', data: xLabels }]}
-    >
-      <LinePlot />
-      <MarkPlot />
-      <ChartsReferenceLine
-        x="Page C"
-        label="Max PV PAGE"
-        lineStyle={{ stroke: 'red' }}
+    <Stack sx={{ width: "100%" }}>
+      <FormControlLabel
+        checked={connectNulls}
+        control={
+          <Checkbox
+            onChange={(event) => setConnectNulls(event.target.checked)}
+          />
+        }
+        label="connectNulls"
+        labelPlacement="end"
       />
-      <ChartsReferenceLine y={9800} label="Max" lineStyle={{ stroke: 'red' }} />
-      <ChartsXAxis />
-      <ChartsYAxis />
-    </ChartContainer>
+      <LineChart
+        xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12, 15, 16, 18, 20] }]}
+        series={[
+          {
+            label: "load",
+            data: loadData,
+            connectNulls,
+            area: true,
+          },
+          {
+            label: "solar",
+            data: solarData, 
+            area: true,
+          },
+        ]}
+        height={200}
+        margin={{ top: 10, bottom: 20 }}
+      />
+    </Stack>
   );
 }
