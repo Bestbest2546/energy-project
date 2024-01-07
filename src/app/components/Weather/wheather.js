@@ -9,7 +9,7 @@ export default function Weather() {
     async function fetchWeatherData() {
       try {
         const response = await axios.get(
-          `http://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}=Thailand&aqi=no`,
+          `https://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}=Thailand`,
         );
         setWeatherData(response.data);
       } catch (error) {

@@ -13,7 +13,6 @@ function loadScript(src) {
 function Map() {
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Ensure the global `google` object doesn't already exist
       if (!window.google) {
         loadScript(`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}&callback=initMap`)
           .then(() => {
