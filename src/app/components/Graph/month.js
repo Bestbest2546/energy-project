@@ -5,7 +5,7 @@ import { axisClasses } from '@mui/x-charts';
 const chartSetting = {
   yAxis: [
     {
-      label: 'rainfall (mm)',
+      label: '',
     },
   ],
   width: 1000,

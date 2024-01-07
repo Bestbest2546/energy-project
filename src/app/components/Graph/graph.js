@@ -37,16 +37,19 @@ export default function IconLabelTabs() {
 
   return (
     <div className="w-full flex items-center flex-col p-2">
-      <div>
-        <ButtonGroup
-          className="grid grid-cols-3"
-          variant="outlined"
-          aria-label="outlined button group"
-        >
-          <Button onClick={() => setValue(0)}>Day</Button>
-          <Button onClick={() => setValue(1)}>Month</Button>
-          <Button onClick={() => setValue(2)}>Year</Button>
-        </ButtonGroup>
+      <div className="w-full flex flex-rows justify-between">
+        <p>Energy management</p>
+        <div className="w-fit">
+          <ButtonGroup
+            className="grid grid-cols-3"
+            variant="outlined"
+            aria-label="outlined button group"
+          >
+            <Button onClick={() => setValue(0)}>Day</Button>
+            <Button onClick={() => setValue(1)}>Month</Button>
+            <Button onClick={() => setValue(2)}>Year</Button>
+          </ButtonGroup>
+        </div>
       </div>
       <div className="w-full grid lg:grid-cols-2 grid-cols-1 my-3 gap-4">
         <div className="p-4 border-2 rounded-xl">

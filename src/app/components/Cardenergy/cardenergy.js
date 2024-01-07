@@ -3,7 +3,13 @@ import Cardflow from "../Energyflow/cardEnergyflow";
 import Wheather from "../Weather/wheather";
 import Map from "../Map/map";
 import Graph from "../Graph/graph";
+import Getgrid from "../../hook/Energydata/totalgrid";
+import Getlux from "../../hook/Energydata/lux";
+
 export default function cardenergy() {
+  const { gridData, isLoading } = Getgrid();
+  const { luxData, isLoadinglux } = Getlux();
+  let kilowattsgrid = gridData / 1000;
   const iconsize = 50;
   const card = (
     <>
@@ -52,9 +58,10 @@ export default function cardenergy() {
           />
           <div className="flex flex-col justify-start items-start w-fit">
             <p className="font-bold text-xl flex flex-row items-end ">
-              Value<p className="mx-1 font-thin text-sm text-gray-400">Watt</p>
+              {isLoading ? <p>Loading...</p> : <p>{kilowattsgrid}</p>}
+              <p className="mx-1 font-thin text-sm text-gray-400">kWh</p>
             </p>
-            <p className="text-gray-400">Total yield</p>
+            <p className="text-gray-400">Total grid in one day</p>
           </div>
         </div>
 
@@ -93,7 +100,7 @@ export default function cardenergy() {
             />
             <div className="flex flex-col justify-start items-start w-fit">
               <p className="font-bold text-xl flex flex-row items-end ">
-                Value
+                {isLoadinglux ? <p>Loading...</p> : <p>{luxData}</p>}
                 <p className="mx-1 font-thin text-sm text-gray-400">Lux</p>
               </p>
               <p className="text-gray-400">Light intensity</p>

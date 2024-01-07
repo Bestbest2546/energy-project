@@ -14,9 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
 import Login from "../Login/login";
 import signOut from "../auth/services/signOut";
-import { useRouter } from "next/navigation";
 export default function MaxWidthDialog() {
-  const router = useRouter();
   const { open, handleClickOpen, handleClose } = useDialog();
   const { login } = Login();
   const [userImage, setUserImage] = useState("");
@@ -116,9 +114,9 @@ export default function MaxWidthDialog() {
             <Box display="flex" flexDirection="row" gap="10px">
               <Image src="/png/google.png" alt="" height={10} width={25} />
               {userImage ? (
-                <Link onClick={signOutuser}>Logout google</Link>
+                <Link className="cursor-pointer" onClick={signOutuser}>Logout google</Link>
               ) : (
-                <Link onClick={login}>Login with Google</Link>
+                <Link className="cursor-pointer" onClick={login}>Login with Google</Link>
               )}
             </Box>
           </Box>

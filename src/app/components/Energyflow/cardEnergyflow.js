@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import './cardflow.css'
+import "./cardflow.css";
 
 export default function cardFlow() {
   return (
@@ -13,7 +14,7 @@ export default function cardFlow() {
           className={`flex justify-center flex-col items-center w-[60px] h-[60px] border-[1px] rounded-full border-yellow-500 outline outline-offset-4 outline-1 outline-yellow-200 bg-white`}
         >
           <Image src="/png/solar-panel.png" alt="" height={0} width={20} />
-          <p className="text-[8px] font-bold font-serif text-gray-500">value</p>
+          <p className="text-[8px] font-bold font-serif text-gray-500">Value</p>
           <p className="text-[8px] font-bold font-serif text-gray-500">Watt</p>
         </div>
       </div>
@@ -23,7 +24,9 @@ export default function cardFlow() {
         >
           <div className="flex justify-center items-center">
             <Image src="/png/empty-battery.png" alt="" height={0} width={20} />
-            <p className="absolute text-[7px] font-bold font-serif text-black">55%</p>
+            <p className="absolute text-[7px] font-bold font-serif text-black">
+              55%
+            </p>
           </div>
           <p className="text-[8px] font-bold font-serif text-gray-500">value</p>
           <p className="text-[8px] font-bold font-serif text-gray-500">Watt</p>
@@ -32,7 +35,9 @@ export default function cardFlow() {
           className={`flex justify-center flex-col items-center w-[60px] h-[60px] border-[1px] rounded-full border-purple-500 outline outline-offset-4 outline-1 outline-purple-200 bg-white`}
         >
           <Image src="/png/electric-tower.png" alt="" height={0} width={20} />
-          <p className="text-[8px] font-bold font-serif text-gray-500">value</p>
+          <p className="text-[8px] font-bold font-serif text-gray-500">
+            Value
+          </p>
           <p className="text-[8px] font-bold font-serif text-gray-500">Watt</p>
         </div>
       </div>

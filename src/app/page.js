@@ -7,7 +7,7 @@ export default function Home() {
       <Navbar />
       <div className="flex h-full">
         <aside>
-          <Sidebar />
+          {/* <Sidebar /> */}
         </aside>
         <main className="flex-grow p-4">
           <Tab />

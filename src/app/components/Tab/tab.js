@@ -73,8 +73,8 @@ export default function BasicTabs() {
           }}
         >
           <Tab className="divide-x" label="Energy" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="..." {...a11yProps(1)} />
+          {/* <Tab label="..." {...a11yProps(2)} /> */}
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -83,11 +83,11 @@ export default function BasicTabs() {
         {energygraph}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        Item Two
+        ...
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
+      {/* <CustomTabPanel value={value} index={2}>
         Item Three
-      </CustomTabPanel>
+      </CustomTabPanel> */}
     </Box>
   );
 }

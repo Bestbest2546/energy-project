@@ -34,6 +34,7 @@ export default function ConnectNulls() {
           },
           {
             label: "solar",
+            connectNulls,
             data: solarData, 
             area: true,
           },
