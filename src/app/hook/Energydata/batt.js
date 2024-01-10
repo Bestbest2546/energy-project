@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { InfluxDB } from "@influxdata/influxdb-client";
 
-const GridPage = () => {
-  const [gridData, setGridData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+const Battpage = () => {
+  const [battData, setBattData] = useState(null);
+  const [isLoadingbatt, setIsLoading] = useState(true);
 
   useEffect(() => {
     const influxDB = new InfluxDB({
@@ -13,33 +13,32 @@ const GridPage = () => {
 
     const queryApi = influxDB.getQueryApi("TTTA");
 
-    const fetchGridData = async () => {
+    const fetchBatt = async () => {
       const fluxQuery = `
-        from(bucket:"TTTA ENERGY")
-        |> range(start: -1d)
-        |> filter(fn: (r) => r["_measurement"] == "ESP32GRID")
-        |> filter(fn: (r) => r["_field"] == "Watts")
-        |> aggregateWindow(every: 1d, fn: mean)
-        |> toInt()
+      from(bucket: "TTTA ENERGY")
+      |> range(start: -1m)
+      |> filter(fn: (r) => r["_measurement"] == "Inverter1")
+      |> filter(fn: (r) => r["_field"] == "battery_capacity")
+      |> last()
       `;
       try {
         const result = await queryApi.collectRows(fluxQuery);
-        setGridData(result[0]._value);
+        setBattData(result[0]._value);
       } catch (error) {
         console.error("Error querying InfluxDB:", error);
-        setGridData("Error");
+        setBattData("Error");
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchGridData();
+    fetchBatt();
   }, []);
 
   return {
-    gridData,
-    isLoading,
+    battData,
+    isLoadingbatt,
   };
 };
 
-export default GridPage;
+export default Battpage;

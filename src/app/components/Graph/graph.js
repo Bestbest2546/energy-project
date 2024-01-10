@@ -38,7 +38,7 @@ export default function IconLabelTabs() {
   return (
     <div className="w-full flex items-center flex-col p-2">
       <div className="w-full flex flex-rows justify-between">
-        <p>Energy management</p>
+        <p className="font-bold text-lg">Energy management</p>
         <div className="w-fit">
           <ButtonGroup
             className="grid grid-cols-3"

@@ -3,13 +3,23 @@ import Cardflow from "../Energyflow/cardEnergyflow";
 import Wheather from "../Weather/wheather";
 import Map from "../Map/map";
 import Graph from "../Graph/graph";
-import Getgrid from "../../hook/Energydata/totalgrid";
+import Gettotalgrid from "../../hook/Energydata/totalgrid";
+import Gettotalgridmonth from "../../hook/Energydata/totalgridmonth";
 import Getlux from "../../hook/Energydata/lux";
+import Gettemp from "../../hook/Energydata/temp";
+import GetHumid from "../../hook/Energydata/humid";
 
 export default function cardenergy() {
-  const { gridData, isLoading } = Getgrid();
+  const { gridData, isLoading } = Gettotalgrid();
+  const { gridDatamonth, isLoadingmonth } = Gettotalgridmonth();
+
   const { luxData, isLoadinglux } = Getlux();
-  let kilowattsgrid = gridData / 1000;
+  const { tempData, isLoadingtemp } = Gettemp();
+  const { humidData, isLoadinghumid } = GetHumid();
+
+  let kilowattsgridmonth = (gridDatamonth * 720) / 1000;
+  let kilowattsgrid = (gridData * 24) / 1000;
+
   const iconsize = 50;
   const card = (
     <>
@@ -61,7 +71,7 @@ export default function cardenergy() {
               {isLoading ? <p>Loading...</p> : <p>{kilowattsgrid}</p>}
               <p className="mx-1 font-thin text-sm text-gray-400">kWh</p>
             </p>
-            <p className="text-gray-400">Total grid in one day</p>
+            <p className="text-gray-400">Total grid energy day</p>
           </div>
         </div>
 
@@ -74,9 +84,10 @@ export default function cardenergy() {
           />
           <div className="flex flex-col justify-start items-start w-fit">
             <p className="font-bold text-xl flex flex-row items-end ">
-              Value<p className="mx-1 font-thin text-sm text-gray-400">Watt</p>
+              {isLoadingmonth ? <p>Loading...</p> : <p>{kilowattsgridmonth}</p>}
+              <p className="mx-1 font-thin text-sm text-gray-400">kWh</p>
             </p>
-            <p className="text-gray-400">Total yield</p>
+            <p className="text-gray-400">Total grid energy month</p>
           </div>
         </div>
       </div>
@@ -116,7 +127,7 @@ export default function cardenergy() {
             />
             <div className="flex flex-col justify-start items-start w-fit">
               <p className="font-bold text-xl flex flex-row items-end ">
-                Value
+                {isLoadingtemp ? <p>Loading...</p> : <p>{tempData}</p>}
                 <p className="mx-1 font-thin text-sm text-gray-400"> ºC</p>
               </p>
               <p className="text-gray-400">Temperature</p>
@@ -132,7 +143,7 @@ export default function cardenergy() {
             />
             <div className="flex flex-col justify-start items-start w-fit">
               <p className="font-bold text-xl flex flex-row items-end ">
-                Value
+                {isLoadinghumid ? <p>Loading...</p> : <p>{humidData}</p>}
                 <p className="mx-1 font-thin text-sm text-gray-400">%RH</p>
               </p>
               <p className="text-gray-400">Humidity</p>

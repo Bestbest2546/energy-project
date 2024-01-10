@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { InfluxDB } from "@influxdata/influxdb-client";
 
-const GridPage = () => {
+const Gridpage = () => {
   const [gridData, setGridData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadinggrid, setIsLoading] = useState(true);
 
   useEffect(() => {
     const influxDB = new InfluxDB({
@@ -13,14 +13,13 @@ const GridPage = () => {
 
     const queryApi = influxDB.getQueryApi("TTTA");
 
-    const fetchGridData = async () => {
+    const fetchGrid = async () => {
       const fluxQuery = `
-        from(bucket:"TTTA ENERGY")
-        |> range(start: -1d)
-        |> filter(fn: (r) => r["_measurement"] == "ESP32GRID")
-        |> filter(fn: (r) => r["_field"] == "Watts")
-        |> aggregateWindow(every: 1d, fn: mean)
-        |> toInt()
+      from(bucket: "TTTA ENERGY")
+      |> range(start: -1m)
+      |> filter(fn: (r) => r["_measurement"] == "ESP32GRID")
+      |> filter(fn: (r) => r["_field"] == "Watts")
+      |> last()
       `;
       try {
         const result = await queryApi.collectRows(fluxQuery);
@@ -33,13 +32,13 @@ const GridPage = () => {
       }
     };
 
-    fetchGridData();
+    fetchGrid();
   }, []);
 
   return {
     gridData,
-    isLoading,
+    isLoadinggrid,
   };
 };
 
-export default GridPage;
+export default Gridpage;

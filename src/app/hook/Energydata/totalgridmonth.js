@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { InfluxDB } from "@influxdata/influxdb-client";
 
-const GridPage = () => {
-  const [gridData, setGridData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+const GridPagemonth = () => {
+  const [gridDatamonth, setGridDatamonth] = useState(null);
+  const [isLoadingmonth, setIsLoadingmonth] = useState(true);
 
   useEffect(() => {
     const influxDB = new InfluxDB({
@@ -13,10 +13,10 @@ const GridPage = () => {
 
     const queryApi = influxDB.getQueryApi("TTTA");
 
-    const fetchGridData = async () => {
+    const fetchGridDatamonth = async () => {
       const fluxQuery = `
         from(bucket:"TTTA ENERGY")
-        |> range(start: -1d)
+        |> range(start: -30d)
         |> filter(fn: (r) => r["_measurement"] == "ESP32GRID")
         |> filter(fn: (r) => r["_field"] == "Watts")
         |> aggregateWindow(every: 1d, fn: mean)
@@ -24,22 +24,22 @@ const GridPage = () => {
       `;
       try {
         const result = await queryApi.collectRows(fluxQuery);
-        setGridData(result[0]._value);
+        setGridDatamonth(result[0]._value);
       } catch (error) {
         console.error("Error querying InfluxDB:", error);
-        setGridData("Error");
+        setGridDatamonth("Error");
       } finally {
-        setIsLoading(false);
+        setIsLoadingmonth(false);
       }
     };
 
-    fetchGridData();
+    fetchGridDatamonth();
   }, []);
 
   return {
-    gridData,
-    isLoading,
+    gridDatamonth,
+    isLoadingmonth,
   };
 };
 
-export default GridPage;
+export default GridPagemonth;

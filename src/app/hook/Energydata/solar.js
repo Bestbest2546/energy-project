@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { InfluxDB } from "@influxdata/influxdb-client";
 
-const GridPage = () => {
-  const [gridData, setGridData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+const Solarpage = () => {
+  const [solarData, setSolarData] = useState(null);
+  const [isLoadingsolar, setIsLoading] = useState(true);
 
   useEffect(() => {
     const influxDB = new InfluxDB({
@@ -13,33 +13,32 @@ const GridPage = () => {
 
     const queryApi = influxDB.getQueryApi("TTTA");
 
-    const fetchGridData = async () => {
+    const fetchSolar = async () => {
       const fluxQuery = `
-        from(bucket:"TTTA ENERGY")
-        |> range(start: -1d)
-        |> filter(fn: (r) => r["_measurement"] == "ESP32GRID")
-        |> filter(fn: (r) => r["_field"] == "Watts")
-        |> aggregateWindow(every: 1d, fn: mean)
-        |> toInt()
+      from(bucket: "TTTA ENERGY")
+      |> range(start: -1m)
+      |> filter(fn: (r) => r["_measurement"] == "Inverter1")
+      |> filter(fn: (r) => r["_field"] == "pv_charging_power")
+      |> last()
       `;
       try {
         const result = await queryApi.collectRows(fluxQuery);
-        setGridData(result[0]._value);
+        setSolarData(result[0]._value);
       } catch (error) {
         console.error("Error querying InfluxDB:", error);
-        setGridData("Error");
+        setSolarData("Error");
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchGridData();
+    fetchSolar();
   }, []);
 
   return {
-    gridData,
-    isLoading,
+    solarData,
+    isLoadingsolar,
   };
 };
 
-export default GridPage;
+export default Solarpage;

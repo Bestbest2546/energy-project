@@ -16,7 +16,7 @@ const Luxpage = () => {
     const fetchLux = async () => {
       const fluxQuery = `
       from(bucket: "TTTA ENERGY")
-      |> range(start: -24h)
+      |> range(start: -1m)
       |> filter(fn: (r) => r["_measurement"] == "ET")
       |> filter(fn: (r) => r["_field"] == "Light_float")
       |> last()
